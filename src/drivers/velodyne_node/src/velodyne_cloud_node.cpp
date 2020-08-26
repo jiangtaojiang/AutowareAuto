@@ -56,6 +56,7 @@ VelodyneCloudNode<T>::VelodyneCloudNode(
   if (static_cast<uint32_t>(m_point_block.capacity()) >= cloud_size) {
     throw std::runtime_error("VelodyneCloudNode: cloud_size must be > PointBlock::CAPACITY");
   }
+  this->start(0U);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -79,6 +80,7 @@ VelodyneCloudNode<T>::VelodyneCloudNode(
   if (static_cast<uint32_t>(m_point_block.capacity()) >= m_cloud_size) {
     throw std::runtime_error("VelodyneCloudNode: cloud_size must be > PointBlock::CAPACITY");
   }
+  this->start(0U);
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename T>

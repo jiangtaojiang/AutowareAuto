@@ -34,7 +34,10 @@ int32_t main(const int32_t argc, char ** const argv)
   try {
     rclcpp::init(argc, argv);
 
-    const auto run = [](const auto & nd_ptr) {nd_ptr->run();};
+    const auto run = [](const auto & nd_ptr) {
+        nd_ptr->start(0);
+        rclcpp::spin(nd_ptr);
+      };
 
     const auto * arg = rcutils_cli_get_option(argv, &argv[argc], "--model");
     if (arg != nullptr) {

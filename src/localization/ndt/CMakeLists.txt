@@ -55,6 +55,7 @@ set(ROS_NO_WARN_LIST
         -Wno-useless-cast
         -Wno-double-promotion
         -Wno-nonnull-compare
+        -Wno-maybe-uninitialized
         -Wuseless-cast)
 target_compile_options(${PROJECT_NAME} PRIVATE ${ROS_NO_WARN_LIST})
 

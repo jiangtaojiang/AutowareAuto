@@ -350,13 +350,11 @@ build_coverage:
   script:
     - vcs import < autoware.auto.$ROS_DISTRO.repos
     - './tools/coverage/coverage.sh -t -u'
+    - tar cfz coverage.tar.gz build/ install/ lcov.base log/latest_lcov_stdout.logs
   artifacts:
     name: "$CI_JOB_NAME"
     paths:
-      - build
-      - install
-      - lcov.base
-      - log/latest_lcov_stdout.logs
+      - coverage.tar.gz
   needs:
     - ade_amd64_foxy
 
@@ -494,6 +492,7 @@ test_coverage:
   stage: test
   image: $CI_REGISTRY_IMAGE/amd64/ade-foxy:commit-$CI_COMMIT_SHA
   script:
+    - tar xzf coverage.tar.gz
     - vcs import < autoware.auto.$ROS_DISTRO.repos
     - './tools/coverage/coverage.sh -b -u'
   after_script:
